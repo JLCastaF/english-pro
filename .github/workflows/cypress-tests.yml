@@ -17,6 +17,8 @@ jobs:
           build: npm run build
           start: npm run dev
           wait-on: 'http://localhost:5173'
+          # Filtro de seguridad:
+          spec: cypress/e2e/smoke_test.cy.js
         env:
           # Aquí pondremos las variables de entorno que guardamos antes
           CYPRESS_TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
