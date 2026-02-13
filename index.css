@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+/* Estilos globales para toda la aplicación */
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
