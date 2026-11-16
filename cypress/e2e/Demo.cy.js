@@ -87,4 +87,15 @@ beforeEach(() => {
 
  });
 
+   it('Cambio',() => {
+
+    cy.visit('/');
+    
+    cy.get('[data-test="auth-submit"]')
+    .should('be.visible')
+    .and('contain.text', 'Iniciar Sesión');
+  
+   // cy.contains('Iniciar Sesión').should('be.visible');
+ });
+
 });
