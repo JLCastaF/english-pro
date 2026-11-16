@@ -1,5 +1,5 @@
 name: English Pro QA Shield
-on: [push] # Se activa cada vez que haces push a Git
+on: [push]
 
 jobs:
   cypress-run:
@@ -14,18 +14,13 @@ jobs:
       - name: Compilar aplicación
         run: npm run build
 
-      - name: Correr Demo E2E (Modo Invisible)
-        uses: cypress-io/github-action@v6
-        with:
-          start: npx vite preview --host 0.0.0.0 --port 5173
-          wait-on: 'http://127.0.0.1:5173'
-          wait-on-timeout: 120
-          spec: cypress/e2e/Demo.cy.js
-          
+      - name: Iniciar servidor y correr Cypress
+        run: |
+          npx vite preview --host 0.0.0.0 --port 5173 &
+          npx wait-on http://127.0.0.1:5173 --timeout 60000
+          npx cypress run --spec cypress/e2e/Demo.cy.js
         env:
-          # Credenciales del Administrador
           CYPRESS_TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
           CYPRESS_TEST_USER_PW: ${{ secrets.TEST_USER_PW }}
-          # Credenciales del Usuario Normal (No Admin)
           CYPRESS_TEST_USER_EMAIL_NOT_ADMIN: ${{ secrets.TEST_USER_EMAIL_NOT_ADMIN }}
           CYPRESS_TEST_USER_PW_NOT_ADMIN: ${{ secrets.TEST_USER_PW_NOT_ADMIN }}
