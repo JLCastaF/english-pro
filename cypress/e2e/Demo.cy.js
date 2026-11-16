@@ -66,7 +66,7 @@ beforeEach(() => {
     cy.contains('VER USUARIOS').click({ force: true });
     cy.url().should('include', '/admin-users');
     
-    cy.contains(' Volver al Panel').click({ force: true });
+    cy.contains(' Volver al Panel', { timeout: 10000 }).click({ force: true });
 
     cy.url().should('include', '/dashboard');
     cy.contains('Salir').click({ force: true });
