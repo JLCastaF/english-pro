@@ -11,14 +11,17 @@ jobs:
       - name: Instalar dependencias
         run: npm install
 
+      - name: Compilar aplicación
+        run: npm run build
+
       - name: Correr Demo E2E (Modo Invisible)
         uses: cypress-io/github-action@v6
         with:
-          build: npm run build
-          start: npx vite preview --host --port 5173
+          start: npx vite preview --host 0.0.0.0 --port 5173
           wait-on: 'http://127.0.0.1:5173'
           wait-on-timeout: 120
           spec: cypress/e2e/Demo.cy.js
+          
         env:
           # Credenciales del Administrador
           CYPRESS_TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
