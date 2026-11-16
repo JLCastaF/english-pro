@@ -15,9 +15,9 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           build: npm run build
-          start: npm run dev
-          wait-on: 'http://localhost:5173'
-          # Apuntando al archivo real de la demo:
+          start: npx vite preview --host --port 5173
+          wait-on: 'http://127.0.0.1:5173'
+          wait-on-timeout: 120
           spec: cypress/e2e/Demo.cy.js
         env:
           # Credenciales del Administrador
