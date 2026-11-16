@@ -11,15 +11,18 @@ jobs:
       - name: Instalar dependencias
         run: npm install
 
-      - name: Correr Smoke Test (Modo Invisible)
+      - name: Correr Demo E2E (Modo Invisible)
         uses: cypress-io/github-action@v6
         with:
           build: npm run build
           start: npm run dev
           wait-on: 'http://localhost:5173'
-          # Filtro de seguridad:
-          spec: cypress/e2e/smoke_test.cy.js
+          # Apuntando al archivo real de la demo:
+          spec: cypress/e2e/Demo.cy.js
         env:
-          # Aquí pondremos las variables de entorno que guardamos antes
+          # Credenciales del Administrador
           CYPRESS_TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
           CYPRESS_TEST_USER_PW: ${{ secrets.TEST_USER_PW }}
+          # Credenciales del Usuario Normal (No Admin)
+          CYPRESS_TEST_USER_EMAIL_NOT_ADMIN: ${{ secrets.TEST_USER_EMAIL_NOT_ADMIN }}
+          CYPRESS_TEST_USER_PW_NOT_ADMIN: ${{ secrets.TEST_USER_PW_NOT_ADMIN }}

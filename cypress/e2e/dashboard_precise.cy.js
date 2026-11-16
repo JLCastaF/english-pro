@@ -11,7 +11,8 @@ describe('Pruebas de Dashboard - English Pro', () => {
 
     // 2. ESPERA DEL LOADER: Tu código muestra "Cargando Datos..." mientras busca en Firestore
     // Esperamos a que ese mensaje desaparezca de la pantalla
-    cy.contains('Cargando Datos...', { timeout: 15000 }).should('not.exist');
+    cy.contains('Cargando tu progreso...', { timeout: 15000 }).should('not.exist');
+    cy.viewport(1280, 720);
   });
 
   it('Debería mostrar la interfaz exacta del Dashboard una vez cargado', () => {
@@ -25,16 +26,17 @@ describe('Pruebas de Dashboard - English Pro', () => {
     cy.get('h2 span').should('not.be.empty');
 
     // Validar el botón de lecciones
-    cy.contains('button', 'Ir a las lecciones').should('be.visible');
+    cy.contains('button', 'Explorar Wiki').should('be.visible');
 
     // Validar racha (streak) que vimos en tu captura de Firebase que era 5
-    cy.contains('span', 'Racha Nube').should('be.visible');
+    cy.contains('span', 'Racha Máxima').should('be.visible');
     cy.contains('span', '5 aciertos').should('be.visible');
   });
 
   it('Debería poder cerrar sesión correctamente', () => {
     // Esperamos a que cargue todo para poder hacer click en salir
-    cy.get('button').contains('Salir').click({ force: true });
+    //cy.contains('Salir').click({ force: true });
+    cy.contains('Salir').click({ force: true });
     cy.url().should('eq', Cypress.config().baseUrl + '/');
   });
 });

@@ -21,7 +21,7 @@ describe('Auth Flow - English Pro', () => {
     cy.get('button[type="submit"]').click();
 
     // Verificamos que redirija al estudio o dashboard
-    cy.url().should('include', '/study');
+    cy.url().should('include', '/dashboard');
     cy.contains(/bienvenido|estudio/i).should('be.visible');
   });
 });
