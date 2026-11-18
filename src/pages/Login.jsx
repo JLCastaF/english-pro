@@ -167,7 +167,7 @@ export default function Login() {
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
               ) : (
                 <>
-                  {isRegistering ? 'Crear Cuenta Pro' : 'Entrar'}
+                  {isRegistering ? 'Crear Cuenta Pro' : 'Iniciar Sesión'}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </>
               )}
